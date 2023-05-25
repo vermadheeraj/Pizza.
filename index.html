@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            text-decoration: none;
+            box-sizing: border-box;
+            outline: none;
+            border: none;
+            scroll-behavior: smooth;
+            transition: .2s linear;
+        }
+
+
+        ::selection {
+            background: crimson;
+        }
+
+        html {
+            font-size: 60%;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            scroll-padding-top: 6rem;
+        }
+
+        body {
+            background: whitesmoke;
+        }
+
+        section {
+            padding: 2rem;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        .btn {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin-top: 5px;
+            padding: 8px 10px;
+            font-size: 18px;
+            color: white;
+            background-color: crimson;
+            cursor: pointer;
+            text-transform: capitalize;
+            border-radius: 3px;
+        }
+
+        .btn:hover {
+            color: black;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            box-shadow: rgba(188, 174, 174, 0.1);
+            z-index: 100;
+        }
+
+        .header .flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header .flex .logo {
+            font-size: 27px;
+            color: crimson;
+            font-weight: bold;
+        }
+
+        .header .flex .navbar a {
+            font-size: 24px;
+            color: black;
+            margin: 0 10px;
+            font-family: sans-serif;
+        }
+
+        .header .flex .navbar a:hover {
+            text-decoration: underline;
+            color: crimson;
+        }
+
+        .header .flex .icons {
+            font-size: 16px;
+            color: black;
+            cursor: pointer;
+            margin-left: 5px;
+            display: flex;
+
+        }
+
+        .header .flex .icons div:hover {
+            color: crimson;
+        }
+
+        .header .flex .icons div {
+            padding: 0 5px;
+        }
+
+        .header .flex .icons div span {
+            font-size: 12px;
+        }
+
+        #menu-btn {
+            display: none;
+        }
+
+        /*---------------user-account-----------------------*/
+
+        .user-account {
+            position: fixed;
+            top: 0;
+            right: -110%;
+            width: 100%;
+            z-index: 1100;
+            background-color: white;
+            height: 100vh;
+            overflow-y: scroll;
+            padding-top: 20px;
+            transition: 1.5s;
+        }
+
+        .user-account.active {
+            right: 0;
+        }
+
+
+        .user-account #close-account {
+            text-align: right;
+            margin-bottom: 10px;
+        }
+
+        .user-account #close-account span {
+            cursor: pointer;
+            font-size: 18px;
+            color: crimson;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        .user-account .user {
+            padding: 8px;
+            background-color: whitesmoke;
+            text-align: center;
+            border-radius: 2px;
+        }
+
+        .user-account .user p {
+            font-size: 18px;
+            color: black;
+            font-family: sans-serif;
+        }
+
+        .user-account .user p:hover {
+            color: crimson;
+
+        }
+
+        .user-account .display-order {
+            padding: 8px;
+            background-color: whitesmoke;
+            text-align: center;
+            border-radius: 2px;
+            margin: 5px 0;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px 0;
+        }
+
+        .user-account .display-order p {
+            font-size: 15px;
+            padding: 5px 10px;
+            color: #888;
+            background-color: white;
+            box-shadow: rgba(0, 0, 0, 0.1);
+            font-family: sans-serif;
+        }
+
+        .user-account .display-order p span {
+            color: crimson;
+            font-size: 12px;
+        }
+
+        .user-account .flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: flex-start;
+            padding: 10px 0;
+        }
+
+        .user-account .flex form {
+            flex: 1 1 40rem;
+            border-radius: 2px;
+            padding: 8px;
+            background-color: whitesmoke;
+        }
+
+        .user-account .flex form h3 {
+            font-size: 17px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            text-align: center;
+            color: black;
+            font-family: sans-serif;
+        }
+
+        .user-account .flex form .box {
+            width: 80%;
+            margin: 5px 0;
+            background-color: white;
+            padding: 8px;
+            font-size: 12px;
+            color: black;
+            border-radius: 2px;
+            font-weight: bold;
+        }
+
+        .my-order {
+            position: fixed;
+            top: 0;
+            right: -110%;
+            width: 30rem;
+            z-index: 1100;
+            background-color: whitesmoke;
+            height: 100vh;
+            overflow-y: scroll;
+            padding-top: 20px;
+            transition: 1.5s;
+        }
+
+        .my-order.active {
+            right: 0;
+        }
+
+        .my-order #close-orders {
+            text-align: right;
+            margin-bottom: 15px;
+        }
+
+        .my-order #close-orders span {
+            cursor: pointer;
+            font-size: 18px;
+            color: crimson;
+            text-decoration: underline;
+            font-weight: bold;
+
+        }
+
+        .my-order .title {
+            text-align: center;
+            margin-bottom: 5px;
+            color: black;
+            font-size: 18px;
+            text-transform: capitalize;
+        }
+
+        .my-order .box {
+            background-color: white;
+            border-radius: 2px;
+            padding: 8px;
+            box-shadow: rgba(0, 0, 0, 0.1);
+            margin: 5px 0;
+        }
+
+        .my-order .box p {
+            font-size: 14px;
+            margin: 5px 0;
+            color: black;
+            line-height: 1.5;
+            font-family: sans-serif;
+        }
+
+        .my-order .box span {
+            color: #888;
+        }
+
+        /*----------------------shopping-cart----------------------*/
+
+        .shopping-cart {
+            position: fixed;
+            top: 0;
+            right: -110%;
+            width: 25rem;
+            z-index: 1100;
+            background-color: whitesmoke;
+            height: 100vh;
+            overflow-y: scroll;
+            padding-top: 20px;
+            transition: 1.5s;
+        }
+
+        .shopping-cart.active {
+            right: 0;
+        }
+
+        .shopping-cart #close-cart {
+            text-align: right;
+            margin-bottom: 15px;
+        }
+
+        .shopping-cart #close-cart span {
+            cursor: pointer;
+            font-size: 18px;
+            color: crimson;
+            text-decoration: underline;
+            font-weight: bold;
+
+        }
+
+        .shopping-cart .box {
+            display: flex;
+            position: relative;
+            align-items: center;
+            gap: 8px;
+            border-radius: 2px;
+            box-shadow: rgba(0, 0, 0, 0.1);
+            padding: 8px;
+            margin: 5px;
+            background: white;
+        }
+
+        .shopping-cart .box .fa-times {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 10px;
+            cursor: pointer;
+            color: crimson;
+        }
+
+        .shopping-cart .box img {
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+        }
+
+        .shopping-cart .box .content p {
+            font-size: 15px;
+            color: black;
+        }
+
+        .shopping-cart .box .content p span {
+            color: crimson;
+        }
+
+        .shopping-cart .box .content form {
+            margin-top: 8px;
+            display: flex;
+            gap: 5px;
+        }
+
+
+        .shopping-cart .box .content form .qty {
+            border: 1px solid black;
+            border-radius: 2px;
+            font-size: 12px;
+            padding: 5px;
+            color: black;
+        }
+
+
+        /*--------------home-section---------------------*/
+
+        .home-bg {
+            background: url('home-bg.jpg') no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .home-bg .home .slide-container {
+            margin-top: 80px;
+        }
+
+        .home-bg .home .slide-container .slide {
+            display: none;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .home-bg .home .slide-container .slide.active {
+            display: flex;
+        }
+
+
+        .home-bg .home .slide-container .slide .image {
+            flex: 1 1 40rem;
+        }
+
+        .home-bg .home .slide-container .slide .image img {
+            width: 600px;
+            height: 600px;
+            animation: fadeLeft .2s linear;
+        }
+
+        .home-bg .home .slide-container .slide .content {
+            flex: 1 1 40rem;
+            text-align: center;
+            animation: fadeRight .2s linear;
+        }
+
+        .home-bg .home .slide-container .slide .content h3 {
+            color: white;
+            margin-bottom: 5px;
+            text-transform: capitalize;
+            font-size: 55px;
+            text-shadow: rgba(0, 0, 0, 0.9);
+            font-weight: bold;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        .home-bg .home .slide-container .slide .content .fa-angle-left,
+        .home-bg .home .slide-container .slide .content .fa-angle-right {
+            height: 5rem;
+            width: 5rem;
+            line-height: 45px;
+            font-size: 18px;
+            color: black;
+            background-color: white;
+            margin: 8px;
+            cursor: pointer;
+            border-radius: 2px;
+        }
+
+        @keyframes fadeLeft {
+            0% {
+                transform: translateX(5rem);
+            }
+        }
+
+        @keyframes fadeRight {
+            0% {
+                transform: translateX-(5rem);
+            }
+        }
+
+        /*--------------about-section---------------------*/
+
+        .heading {
+            text-align: center;
+            margin-bottom: 8px;
+            font-size: 30px;
+            color: black;
+            text-transform: uppercase;
+            font-family: sans-serif;
+        }
+
+        .about .box-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .about .box-container .box {
+            flex: 1 1 30rem;
+            margin: 5px 8px;
+        }
+
+        .about .box-container .box .image {
+            width: 100%;
+        }
+
+        .about .box-container .box h3 {
+            font-size: 18px;
+            color: black;
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 8px 5px;
+            text-transform: uppercase;
+        }
+
+        .about .box-container .box p {
+            font-size: 12px;
+            color: #333;
+            font-family: sans-serif;
+            padding: 8px 5px;
+            padding-bottom: 20px;
+
+        }
+
+        /*----------------menu-section----------------------*/
+
+        .menu .box-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .menu .box-container .box {
+            flex: 1 1 15rem;
+            margin: 5px 8px;
+            border-radius: 3px;
+            background-color: white;
+            box-shadow: rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .menu .box-container .box img {
+            width: 80%;
+            margin-top: 10px;
+        }
+
+        .menu .box-container .box .price {
+            background-color: black;
+            border-radius: 3px;
+            padding: 5px 10px;
+            font-size: 15px;
+            color: white;
+            font-family: sans-serif;
+            position: absolute;
+            margin: 5px;
+
+
+        }
+
+        .menu .box-container .box .price span {
+            font-size: 18px;
+        }
+
+        .menu .box-container .box .name {
+            font-size: 20px;
+            color: black;
+            margin: 8px 0;
+            font-family: sans-serif;
+        }
+
+        .menu .box-container .box form {
+            display: flex;
+            gap: 10px;
+            padding: 0 8px;
+
+        }
+
+        .menu .box-container .box form .qty {
+            width: 40px;
+            border: 1px solid black;
+            margin-top: 5px;
+            border-radius: 3px;
+            font-size: 15px;
+            color: black;
+        }
+
+        /*-------------------order-section--------------------*/
+
+        .order form {
+            background-color: white;
+            box-shadow: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 3px;
+        }
+
+        .order form .display-order {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            margin-bottom: 15px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+            gap: 8px;
+
+        }
+
+        .order form .display-order p {
+            font-size: 18px;
+            color: #333;
+            padding: 8px 10px;
+            border-radius: 3px;
+            background-color: whitesmoke;
+        }
+
+        .order form .display-order p span {
+            color: crimson;
+        }
+
+        .order form .flex {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 8px;
+
+        }
+
+        .order form .flex .inputbox {
+            width: 48%;
+
+        }
+
+        .order form .flex .inputbox span {
+            font-size: 18px;
+            color: #333;
+            text-transform: capitalize;
+        }
+
+        .order form .flex .inputbox .box {
+            width: 100%;
+            background-color: whitesmoke;
+            padding: 10px 8px;
+            font-size: 15px;
+            color: black;
+            border-radius: 3px;
+            margin: 5px;
+        }
+
+        /*-------------------------faq-section------------------*/
+
+        .faq .accordion-container {
+            max-width: 70rem;
+            margin: 0 auto;
+        }
+
+        .faq .accordion-container .accordion {
+            margin: 8px 0;
+            box-shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        .faq .accordion-container .accordion .accordion-heading {
+            padding: 8px;
+            background-color: black;
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .faq .accordion-container .accordion .accrodion-content {
+            padding: 8px;
+            background-color: white;
+            line-height: 1.5;
+            color: #333;
+            font-size: 14px;
+        }
+
+        /*-----------------address and footer section------------------*/
+
+        .footer .box-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 5px;
+            padding: 8px 5px;
+        }
+
+        .footer .box-container .box {
+            flex: 1 1 23rem;
+            background-color: white;
+            border-radius: 3px;
+            box-shadow: rgba(0, 0, 0, 0.7);
+            padding: 8px;
+
+        }
+
+        .footer .box-container .box:hover{
+            box-shadow: 0 0 25px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer .box-container .box h3 {
+            font-size: 20px;
+            color: black;
+            font-family: sans-serif;
+            padding: 5px;
+            text-align: center;
+        }
+
+        .footer .box-container .box p {
+            font-size: 15px;
+            color: #333;
+            font-family: sans-serif;
+            padding: 5px;
+            text-align: center;
+        }
+
+        .footer .box-container .box i {
+            font-size: 30px;
+            color: crimson;
+            padding: 8px 45%;
+        }
+
+        .footer .credit {
+            text-align: center;
+            padding: 5px;
+            padding-top: 10px;
+            margin-top: 10px;
+            border-top: 1px solid #333;
+        }
+
+        .footer .credit .follow a {
+            font-size: 15px;
+
+        }
+
+        .footer .credit .follow h3 {
+            font-size: 22px;
+            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            padding: 10px 0;
+
+        }
+
+        .footer .credit h5 {
+            font-size: 22px;
+            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+        }
+
+        .footer .credit h5 span {
+            color: crimson;
+            font-size: 25px;
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        @media (max-width:800px) {
+
+            html {
+                font-size: 55%;
+
+            }
+        }
+
+
+
+        @media (max-width:600px) {
+
+            html {
+                font-size: 50%;
+
+            }
+
+            .header .flex .navbar a {
+                font-size: 18px;
+            }
+
+            #menu-btn {
+                display: inline-block;
+            }
+
+            .header .flex .navbar {
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 99%;
+                background-color: white;
+                border-top: 1px solid black;
+                border-bottom: 1px solid black;
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: 1s;
+            }
+
+            .header .flex .navbar.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+
+            .header .flex .navbar a {
+                display: block;
+                margin: 8px
+            }
+
+            .home-bg .home .slide-container .slide .image img {
+                width: 400px;
+                height: 400px;
+                animation: fadeLeft .2s linear;
+            }
+
+            .order form .flex .inputbox {
+                width: 100%;
+
+            }
+
+            .footer .box-container {
+                align-items: center;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 5px;
+                padding: 8px 5px;
+            }
+
+
+        }
+
+        @media (max-width:400px) {
+
+            .home-bg .home .slide-container .slide .image img {
+                width: 350px;
+                height: 350px;
+                animation: fadeLeft .2s linear;
+            }
+
+            .home-bg .home .slide-container .slide .content h3 {
+                font-size: 25px;
+            }
+
+            .menu .box-container {
+                align-items: center;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+
+
+        }
+
+        @media (max-width:300px) {
+
+            .home-bg .home .slide-container .slide .image img {
+                width: 250px;
+                height: 250px;
+                animation: fadeLeft .2s linear;
+            }
+
+            .home-bg .home .slide-container .slide .content h3 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+
+
+
+<body>
+
+
+    <header class="header">
+
+        <section class="flex">
+
+            <a href="" class="logo">Pizza.</a>
+
+            <nav class="navbar">
+
+                <a href="#home">home</a>
+                <a href="#about">about</a>
+                <a href="#menu">menu</a>
+                <a href="#order">order</a>
+                <a href="#faq">faq</a>
+
+            </nav>
+
+            <div class="icons">
+
+                <div id="menu-btn" class="fas"><img src="icons-menu (2).png" alt="" height="25px"></div>
+                <div id="user-btn" class="fas"><img src="icons8-user-60.png" alt="" height="25px"></div>
+                <div id="order-btn" class="fas"><img src="icons-bag.png" alt="" height="25px"></div>
+                <div id="cart-btn" class="fas "><img src="icons-cart.png" alt="" height="25px"><span>(4)</span></div>
+
+            </div>
+
+
+        </section>
+
+    </header>
+
+
+    <div class="user-account">
+
+        <section>
+            <div id="close-account"><span>Close</span></div>
+
+            <div class="user">
+                <p><span>you are logged in now</span></p>
+            </div>
+
+            <br>
+
+            <div class="display-order">
+                <p>Pizza-1 <span>(RS 200/- x 2)</span></p>
+                <p>Pizza-1 <span>(RS 200/- x 2)</span></p>
+                <p>Pizza-1 <span>(RS 200/- x 2)</span></p>
+            </div>
+
+            <br>
+
+            <div class="flex">
+                <form action="" method="post">
+                    <h3>login now</h3>
+                    <input type="email" name="email" required class="box" placeholder="Enter your email">
+                    <input type="password" name="pass" required class="box" placeholder="Enter your password">
+
+                    <input type="submit" value="login now" name="login" class="btn">
+                </form>
+
+                <form action="" method="post">
+                    <h3>register now</h3>
+                    <input type="text" name="name" required class="box" placeholder="Enter your name">
+                    <input type="email" name="email" required class="box" placeholder="Enter your email">
+                    <input type="password" name="pass" required class="box" placeholder="Enter your password">
+                    <input type="password" name="cpass" required class="box" placeholder="confirm your password">
+                    <input type="submit" value="register now" name="register" class="btn">
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <div class="my-order">
+
+        <section>
+
+            <div id="close-orders"><span>Close</span></div>
+
+            <h3 class="title">My orders</h3>
+
+            <div class="box">
+                <p>placed on <span>06/04/2022</span></p>
+                <p> name :<span>neeraj verma</span></p>
+                <p> number : <span>8602545640</span></p>
+                <p> address : <span>D-sector govindpura bhopal</span></p>
+                <p> payment method : <span>cash on delivery</span></p>
+                <p> your order : <span>pizza-1 Rs 200</span></p>
+                <p>total price : <span>Rs 400</span></p>
+            </div>
+
+        </section>
+
+    </div>
+
+    <div class="shopping-cart">
+
+        <section>
+
+
+            <div id="close-cart"><span>Close</span></div>
+
+            <div class="box">
+                <a href="" class="fas fa-times"></a>
+                <div class="content">
+                    <img src="pizza-1.jpg" alt="">
+                    <p>Pizza-1 <span>(Rs200/- x 2)</span></p>
+                    <form action="" method="post">
+                        <input type="number" name="number" class="qty" min="1" value="2" max="100">
+                        <button type="submit" class="btn-1"></button>
+                    </form>
+                </div>
+            </div>
+
+
+            <div class="box">
+                <a href="" class="fas fa-times"></a>
+                <div class="content">
+                    <img src="pizza-1.jpg" alt="">
+                    <p>Pizza-2 <span>(Rs200/- x 2)</span></p>
+                    <form action="" method="post">
+                        <input type="number" name="number" class="qty" min="1" value="2" max="100">
+                        <button type="submit" class="btn-1"></button>
+                    </form>
+                </div>
+            </div>
+            <a href="#order" class="btn">order now</a>
+
+        </section>
+
+    </div>
+
+
+    <div class="home-bg">
+
+        <section class="home" id="home">
+
+            <div class="slide-container">
+
+                <div class="slide active">
+                    <div class="image">
+                        <img src="home-img-1.png" alt="">
+                    </div>
+
+                    <div class="content">
+
+                        <h3>homemade pepperoni pizza</h3>
+                        <div class="fas fa-angle-left" onclick="prev()"></div>
+                        <div class="fas fa-angle-right" onclick="next()"></div>
+
+                    </div>
+                </div>
+
+
+
+                <div class="slide">
+                    <div class="image">
+                        <img src="home-img-2.png" alt="">
+                    </div>
+
+                    <div class="content">
+
+                        <h3> pizza With Mushrooms</h3>
+                        <div class="fas fa-angle-left" onclick="prev()"></div>
+                        <div class="fas fa-angle-right" onclick="next()"></div>
+
+                    </div>
+                </div>
+
+
+                <div class="slide">
+                    <div class="image">
+                        <img src="home-img-3.png" alt="">
+                    </div>
+
+                    <div class="content">
+
+                        <h3>Mascarpone And Mushrooms pizza</h3>
+                        <div class="fas fa-angle-left" onclick="prev()"></div>
+                        <div class="fas fa-angle-right" onclick="next()"></div>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        </section>
+    </div>
+
+    <!---------------------about-section--------------------------->
+
+
+    <section class="about" id="about">
+
+        <h1 class="heading">about us</h1>
+
+        <div class="box-container">
+
+            <div class="box">
+                <img src="about-1.svg" alt="">
+                <h3>made with love</h3>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates eligendi porro veritatis
+                    accusantium tempore rerum amet reiciendis sint vel cupiditate!
+                </p>
+                <a href="#menu" class="btn">our menu</a>
+            </div>
+
+            <div class="box">
+                <img src="about-2.svg" alt="">
+                <h3>30 minutes delivery</h3>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates eligendi porro veritatis
+                    accusantium tempore rerum amet reiciendis sint vel cupiditate!
+                </p>
+                <a href="#menu" class="btn">our menu</a>
+
+            </div>
+
+
+
+            <div class="box">
+                <img src="about-3.svg" alt="">
+                <h3>share with friends</h3>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates eligendi porro veritatis
+                    accusantium tempore rerum amet reiciendis sint vel cupiditate!
+                </p>
+                <a href="#menu" class="btn">our menu</a>
+
+            </div>
+
+        </div>
+
+
+
+    </section>
+
+
+    <section class="menu" id="menu">
+
+        <h1 class="heading">our menu</h1>
+
+        <div class="box-container">
+
+            <div class="box">
+                <div class="price">Rs <span>250</span>/-</div>
+                <img src="pizza-1.jpg" alt="">
+                <div class="name">Pizza 1</div>
+                <form action="" method="post">
+                    <input type="number" min="1" max="100" value="1" class="qty" name="qty">
+                    <input type="submit" value="add to cart" name="add_to_cart" class="btn">
+                </form>
+            </div>
+
+            <div class="box">
+                <div class="price">Rs <span>200</span>/-</div>
+                <img src="pizza-2.jpg" alt="">
+                <div class="name">Pizza 2</div>
+                <form action="" method="post">
+                    <input type="number" min="1" max="100" value="1" class="qty" name="qty">
+                    <input type="submit" value="add to cart" name="add_to_cart" class="btn">
+                </form>
+            </div>
+
+            <div class="box">
+                <div class="price">Rs <span>300</span>/-</div>
+                <img src="pizza-3.jpg" alt="">
+                <div class="name">Pizza 3</div>
+                <form action="" method="post">
+                    <input type="number" min="1" max="100" value="1" class="qty" name="qty">
+                    <input type="submit" value="add to cart" name="add_to_cart" class="btn">
+                </form>
+            </div>
+
+        </div>
+
+        <div class="box-container">
+
+            <div class="box">
+                <div class="price">Rs <span>250</span>/-</div>
+                <img src="pizza-4.jpg" alt="">
+                <div class="name">Pizza 4</div>
+                <form action="" method="post">
+                    <input type="number" min="1" max="100" value="1" class="qty" name="qty">
+                    <input type="submit" value="add to cart" name="add_to_cart" class="btn">
+                </form>
+            </div>
+
+            <div class="box">
+                <div class="price">Rs <span>200</span>/-</div>
+                <img src="pizza-5.jpg" alt="">
+                <div class="name">Pizza 5</div>
+                <form action="" method="post">
+                    <input type="number" min="1" max="100" value="1" class="qty" name="qty">
+                    <input type="submit" value="add to cart" name="add_to_cart" class="btn">
+                </form>
+            </div>
+
+            <div class="box">
+                <div class="price">Rs <span>300</span>/-</div>
+                <img src="pizza-6.jpg" alt="">
+                <div class="name">Pizza 6</div>
+                <form action="" method="post">
+                    <input type="number" min="1" max="100" value="1" class="qty" name="qty">
+                    <input type="submit" value="add to cart" name="add_to_cart" class="btn">
+                </form>
+            </div>
+
+        </div>
+
+
+        <div class="box-container">
+
+            <div class="box">
+                <div class="price">Rs <span>350</span>/-</div>
+                <img src="pizza-7.jpg" alt="">
+                <div class="name">Pizza 4</div>
+                <form action="" method="post">
+                    <input type="number" min="1" max="100" value="1" class="qty" name="qty">
+                    <input type="submit" value="add to cart" name="add_to_cart" class="btn">
+                </form>
+            </div>
+
+            <div class="box">
+                <div class="price">Rs <span>400</span>/-</div>
+                <img src="pizza-8.jpg" alt="">
+                <div class="name">Pizza 5</div>
+                <form action="" method="post">
+                    <input type="number" min="1" max="100" value="1" class="qty" name="qty">
+                    <input type="submit" value="add to cart" name="add_to_cart" class="btn">
+                </form>
+            </div>
+
+            <div class="box">
+                <div class="price">Rs <span>350</span>/-</div>
+                <img src="pizza-9.jpg" alt="">
+                <div class="name">Pizza 6</div>
+                <form action="" method="post">
+                    <input type="number" min="1" max="100" value="1" class="qty" name="qty">
+                    <input type="submit" value="add to cart" name="add_to_cart" class="btn">
+                </form>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="order" id="order">
+
+        <h1 class="heading">order now</h1>
+
+
+        <form action="" method="post">
+
+            <div class="display-order">
+
+                <p>Pizza 01 <span>( Rs250/- x 2 )</span></p>
+                <p>Pizza 01 <span>( Rs250/- x 2 )</span></p>
+                <p>Pizza 01 <span>( Rs250/- x 2 )</span></p>
+                <p>Pizza 01 <span>( Rs250/- x 2 )</span></p>
+
+            </div>
+
+            <div class="flex">
+                <div class="inputbox">
+                    <span>your name :</span>
+                    <input type="text" name="name" class="box" required placeholder="Enter your name">
+                </div>
+
+                <div class="inputbox">
+                    <span>your email :</span>
+                    <input type="email" name="email" class="box" required placeholder="Enter your email">
+                </div>
+
+                <div class="inputbox">
+                    <span>your number :</span>
+                    <input type="number" name="number" class="box" required placeholder="Enter your number">
+                </div>
+
+                <div class="inputbox">
+                    <span>address line 01 :</span>
+                    <input type="text" name="falt" class="box" required placeholder="e.g falt no.">
+                </div>
+
+                <div class="inputbox">
+                    <span>address line 02 :</span>
+                    <input type="text" name="street" class="box" required placeholder="e.g street no.">
+                </div>
+
+                <div class="inputbox">
+                    <span>address line 02 :</span>
+                    <input type="text" name="street" class="box" required placeholder="e.g street no.">
+                </div>
+
+
+                <div class="inputbox">
+                    <span>pin code :</span>
+                    <input type="number" name="number" class="box" required placeholder="Enter your pincode">
+                </div>
+
+                <div class="inputbox">
+                    <span>payment method</span>
+                    <select name="method" id="" class="box">
+                        <option value="cash on delivery">cash on delivery</option>
+                        <option value="credit card">credit card</option>
+                        <option value="paytm">paytm</option>
+                    </select>
+
+                </div>
+
+            </div>
+
+            <input type="submit" value="order now" class="btn" name="order">
+
+        </form>
+
+
+    </section>
+
+
+    <section class="faq" id="faq">
+
+        <h1 class="heading">FAQ</h1>
+
+        <div class="accordion-container">
+
+            <div class="accordion active">
+                <div class="accordion-heading">
+                    <span>how does it work?</span>
+                    <i class="fas fa-angle-down"></i>
+                </div>
+                <p class="accrodion-content">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis ab eaque unde minima, expedita
+                    ratione ut
+                    non ipsam rem officia.
+                </p>
+            </div>
+        </div>
+
+        <div class="accordion-container">
+
+            <div class="accordion active">
+                <div class="accordion-heading">
+                    <span>can i order for huge parties?</span>
+                    <i class="fas fa-angle-down"></i>
+                </div>
+                <p class="accrodion-content">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis ab eaque unde minima, expedita
+                    ratione ut
+                    non ipsam rem officia.
+                </p>
+            </div>
+        </div>
+
+        <div class="accordion-container">
+
+            <div class="accordion active">
+                <div class="accordion-heading">
+                    <span>how does it work?</span>
+                    <i class="fas fa-angle-down"></i>
+                </div>
+                <p class="accrodion-content">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis ab eaque unde minima, expedita
+                    ratione ut
+                    non ipsam rem officia.
+                </p>
+            </div>
+        </div>
+
+        <div class="accordion-container">
+
+            <div class="accordion active">
+                <div class="accordion-heading">
+                    <span>how does it work?</span>
+                    <i class="fas fa-angle-down"></i>
+                </div>
+                <p class="accrodion-content">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis ab eaque unde minima, expedita
+                    ratione ut
+                    non ipsam rem officia.
+                </p>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="footer">
+
+        <h1 class="heading">Address</h1>
+
+        <div class="box-container">
+            <div class="box">
+                <i class="fas fa-phone"></i>
+                <h3>Phone No</h3>
+                <p>+91 8602912044</p>
+            </div>
+
+            <div class="box">
+                <i class="fas fa-envelope"></i>
+                <h3>Email Address</h3>
+                <p>verma.dheeraj1108@gmail.com</p>
+            </div>
+
+            <div class="box">
+                <i class="fas fa-map"></i>
+                <h3>Shop Address</h3>
+                <p>Shop no 14 M.P nagar bhopal</p>
+            </div>
+
+            <div class="box">
+                <i class="fas fa-clock"></i>
+                <h3>Timeing Open And Close</h3>
+                <p>10:00AM to 11:30PM EveryDay</p>
+            </div>
+        </div>
+
+
+        <div class="credit">
+
+            <div class="follow">
+
+                <h3>Follow By Social Media</h3>
+                <a href="https://www.facebook.com/login/"><img src="facebook.png" alt="" height="30px"></a>
+                <a href="https://www.instagram.com/accounts/login/"><img src="instagram.png" alt="" height="30px"></a>
+                <a href="https://twitter.com/"><img src="twitter.png" alt="" height="30px"></a>
+                <a href=""><img src="youtube.png" alt="" height="30px"></a>
+            </div>
+            <h5>
+                CopyRigth <span>Pizza. Website</span>
+            </h5>
+        </div>
+
+
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+
+        let navbar = document.querySelector('.header .flex .navbar');
+
+        document.querySelector('#menu-btn').onclick = () => {
+            navbar.classList.toggle('active');
+        }
+
+
+        let account = document.querySelector('.user-account');
+
+        document.querySelector('#user-btn').onclick = () => {
+            account.classList.add('active');
+        }
+
+        document.querySelector('#close-account').onclick = () => {
+            account.classList.remove('active');
+        }
+
+
+        let myOrder = document.querySelector('.my-order');
+
+        document.querySelector('#order-btn').onclick = () => {
+            myOrder.classList.add('active');
+        }
+
+        document.querySelector('#close-orders').onclick = () => {
+            myOrder.classList.remove('active');
+        }
+
+        let shoppingCart = document.querySelector('.shopping-cart');
+
+        document.querySelector('#cart-btn').onclick = () => {
+            shoppingCart.classList.add('active');
+        }
+
+        document.querySelector('#close-cart').onclick = () => {
+            shoppingCart.classList.remove('active');
+        }
+
+
+        window.onscroll = () => {
+            navbar.classList.remove('active');
+        }
+
+
+
+        let slides = document.querySelectorAll('.home-bg .home .slide-container .slide');
+        let index = 0;
+
+        function next() {
+            slides[index].classList.remove('active');
+            index = (index + 1) % slides.length;
+            slides[index].classList.add('active');
+        }
+
+
+        function prev() {
+            slides[index].classList.remove('active');
+            index = (index - 1 + slides.length) % slides.length;
+            slides[index].classList.add('active');
+        }
+
+        let accordion = document.querySelectorAll('.faq .accordion-container .accordion');
+
+        accordion.forEach(acc => {
+            acco.onclick = () => {
+                accordion.forEach(remove => remove.classList.remove('active'));
+                acco.classList.add('active');
+            }
+        });
+
+
+
+
+    </script>
+
+
+
+
+</body>
+
+</html>
